@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SearchBar from '../components/SearchBar'
+import VideoShow from '../components/VideoShow'
+import VideoIndex from '../components/VideoIndex'
 
 
 export default class YouTubeContainer extends Component{
@@ -19,7 +21,7 @@ export default class YouTubeContainer extends Component{
   searchInput(e){
     this.setState({
       searchTerm: e.target.value
-    }),this.apicall
+    },this.apiCall )
   }
 
   apiCall(){
@@ -48,7 +50,7 @@ export default class YouTubeContainer extends Component{
       <div>
         <SearchBar handleChange={this.searchInput}/>
         {this.state.videoShow && <VideoShow video={this.state.shownVideo}/>}
-        <VideoIndex videoResults={this.state.videos} selectThumbnail={this.handleClick}
+        <VideoIndex videoResults={this.state.videos} selectThumbnail={this.handleClick}/>
       </div>
     )
   }
