@@ -20,7 +20,7 @@ export default class YouTubeContainer extends Component{
 
   searchInput(e){
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: e
     },this.apiCall )
   }
 
@@ -45,12 +45,21 @@ export default class YouTubeContainer extends Component{
   }
 
   render(){
-    console.log(this.state.searchTerm);
     return(
       <div>
-        <SearchBar handleChange={this.searchInput}/>
-        {this.state.videoShow && <VideoShow video={this.state.shownVideo}/>}
-        <VideoIndex videoResults={this.state.videos} selectThumbnail={this.handleClick}/>
+        <div className="container">
+          <div className="content-wrapper">
+            <div className="row">
+              <SearchBar handleChange={this.searchInput}/>
+              <div className='col-lg-9'>
+                {this.state.videoShow && <VideoShow video={this.state.shownVideo} videoResults={this.state.videos}/>}
+              </div>
+              <div className="col-sm-3">
+                <VideoIndex videoResults={this.state.videos} selectThumbnail={this.handleClick}/>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

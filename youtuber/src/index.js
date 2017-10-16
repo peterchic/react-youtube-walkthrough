@@ -6,7 +6,7 @@ import './index.css';
 
 // import SearchBar from './components/SearchBar'
 
-const API_KEY = 'AIzaSyD65e6KLMWt485jGtPliXjlZbWOfTJrIpA'
+// const API_KEY = 'AIzaSyD65e6KLMWt485jGtPliXjlZbWOfTJrIpA'
 
 ReactDOM.render(
   < App />,

@@ -7,12 +7,13 @@ export default (props) => {
     let videoId = video.id.videoId
     let snippet = video.snippet
     return(
-      <li>
+      <li key={videoId} className="list-group-item d-flex text-left">
         <Image
           selectThumbnail={props.selectThumbnail}
           videoId={videoId}
           snippet={snippet}
         />
+        <br/>
         {snippet.title}
       </li>
     )
@@ -20,7 +21,7 @@ export default (props) => {
 
   return(
     <div>
-      <ul>
+      <ul className="list-group">
         {thumbnails}
       </ul>
     </div>
