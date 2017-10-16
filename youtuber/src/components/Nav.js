@@ -5,7 +5,7 @@ export default function(){
     <div>
       <nav>
         <ul>
-          <li><a href='#'/>Home</li>
+          <a href='#'>Home</a>
         </ul>
       </nav>
     </div>

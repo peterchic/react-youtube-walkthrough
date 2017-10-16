@@ -1,43 +1,38 @@
 import React, { Component } from 'react'
-import SearchForm from '../components/SearchForm'
-import VideoShow from '../components/VideoShow'
-import VideoIndex from '../components/VideoIndex'
+import SearchBar from '../components/SearchBar'
 
-export default class YouTubeContainer extends Component {
-  constructor() {
+
+export default class YouTubeContainer extends Component{
+  constructor(){
     super()
-    this.state = {
+    this.state={
+      videos: [],
       searchTerm: '',
-      videoResults: [],
       shownVideo: '',
-      videoShow: false
+      videoShow:false
     }
-    this.fetchYouTube = this.fetchYouTube.bind(this)
+
+    this.searchInput = this.searchInput.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
-  fetchYouTube(e){
-    this.setState(
-      {
-        searchTerm: e.target.value
-      },
-      this.apiCall
-    )
+  searchInput(e){
+    this.setState({
+      searchTerm: e.target.value
+    }),this.apicall
   }
 
   apiCall(){
     const API_KEY = 'AIzaSyCUVIg4sQA5eg8huCRYVHJQSfwElOwenoo'
     const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&q=${this.state.searchTerm}&type=video`
 
-    var whatIsThis = fetch(URL)
-    .then(response => response.json())
-    .then(youTubeData => this.setState(
-      {
-        videoResults: youTubeData.items,
-        shownVideo: youTubeData.items[0].id.videoId
-      }
+    fetch(URL)
+      .then(res => res.json())
+      .then(YTdata => this.setState({
+        videos: YTdata.items,
+        shownVideo: YTdata.items[0].id.videoId
+      })
     )
-  )
   }
 
   handleClick(videoId){
@@ -48,13 +43,10 @@ export default class YouTubeContainer extends Component {
   }
 
   render(){
+    console.log(this.state.searchTerm);
     return(
-      <div className="YouTubeContainer">
-        <SearchForm handleChange={this.fetchYouTube} />
-        {this.state.videoShow &&
-          <VideoShow video={this.state.shownVideo} />
-        }
-        <VideoIndex videoResults={this.state.videoResults} selectThumbnail={this.handleClick} />
+      <div>
+        <SearchBar handleChange={this.searchInput}/>
       </div>
     )
   }
