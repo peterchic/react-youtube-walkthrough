@@ -47,6 +47,8 @@ export default class YouTubeContainer extends Component{
     return(
       <div>
         <SearchBar handleChange={this.searchInput}/>
+        {this.state.videoShow && <VideoShow video={this.state.shownVideo}/>}
+        <VideoIndex videoResults={this.state.videos} selectThumbnail={this.handleClick}
       </div>
     )
   }
